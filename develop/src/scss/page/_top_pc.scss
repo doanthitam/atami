@@ -1,0 +1,34 @@
+//
+// landing page
+//------------------------------------------------------------------------
+@charset "utf-8";
+body,
+td,
+th,
+input,
+textarea {
+  font-family: $font-web;
+}
+img {
+  width: 100%;
+}
+.container {
+  min-width: 1280px;
+}
+.row {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+.show_sp {
+  display: none;
+}
+.flex {
+  display: flex;
+}
+.header {
+  .logo {
+    width: 319px;
+    font-size: 0;
+  }
+}

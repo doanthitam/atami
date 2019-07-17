@@ -1,0 +1,473 @@
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+.show_pc {
+  display: none;
+}
+img {
+  width: 100%;
+}
+a {
+    color: #0B3863;
+    text-decoration: none;
+}
+.header {
+  background: #c1b083;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  padding: 15px 13px 10px;
+  .logo {
+    width: 149px;
+    margin: 0 auto;
+    font-size: 0
+  }
+
+  .menuIcon {
+    position: absolute;
+    z-index: 5;
+    right: 15px;
+    top: 26px;
+    .menu_trigger {
+      display: inline-block;
+      transition: all 0.4s;
+      position: relative;
+      width: 30px;
+      height: 22px;
+      &.active {
+        span {
+          &:nth-of-type(1) {
+            transform: translateY(10px) rotate(-315deg);
+          }
+          &:nth-of-type(2) {
+            opacity: 0;
+          }
+          &:nth-of-type(3) {
+            transform: translateY(-10px) rotate(315deg);
+          }
+        }
+      }
+      span {
+        display: inline-block;
+        transition: all 0.4s;
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background-color: #0B3863;
+        border-radius: 4px;
+        height: 2px;
+        &:nth-of-type(1) {
+          top: 0
+        }
+        &:nth-of-type(2) {
+          top: 10px;
+        }
+        &:nth-of-type(3) {
+          bottom: 0;
+        }
+      }
+    }
+  }
+  nav {
+    display: none;
+    padding: 43px 0px 25px;
+  }
+  ul {
+    li {
+      text-align: center;
+      margin-bottom: 24px;
+      a {
+        text-decoration: none;
+        width: 126px;
+        display: block;
+        margin: 0 auto;
+        border-bottom: 1px solid;
+        padding-bottom: 15px;
+        transition: all 0.5s;
+        span {
+          display: block;
+          color: #0c3864;
+          &:nth-of-type(1) {
+            font-size: 15px;
+            font-family: "Varela Round";
+          }
+          &:nth-of-type(2) {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+.mv {
+  padding-top: 73px;
+  position: relative;
+  &_txt {
+    text-align: center;
+    margin: 29px 0;
+    p {
+      color: #0e3055;
+      span {
+        display: block;
+      }
+      &:nth-of-type(1) {
+        margin-bottom: 20px;
+        font-family: "Varela Round";
+        span {
+          font-size: 17px;
+          margin-bottom: 3px;
+        }
+      }
+      &:nth-of-type(2) {
+        font-size: 17px;
+      }
+    }
+  }
+  &_trial {
+    text-decoration: none;
+    color: #fff;
+    background: #0B3863;
+    padding: 10px;
+    display: block;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    text-align: center;
+    span {
+      font-size: 16px;
+      display: block;
+      font-weight: bold;
+    }
+    .en {
+      color: #c1b083;
+      margin-bottom: 10px;
+      font-family: "Varela Round";
+    }
+  }
+}
+section {
+  h2 {
+    text-align: center;
+    span {
+      color: #fff;
+      font-size: 25px;
+      line-height: 29px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #fff;
+      font-family: "Varela Round";
+    }
+  }
+}
+.concept {
+  background: #0c3864;
+  padding: 30px 20px;
+  counter-reset: h3;
+  h2 {
+    padding: 30px 0;
+  }
+  &_think {
+    > h3 {
+      font-size: 18px;
+      background: #fff;
+      width: 100%;
+      height: 38px;
+      position: relative;
+      line-height: 38px;
+      color: #0c3864;
+      border-radius: 5px;
+      text-align: center;
+      margin: 27px 0 34px;
+      &:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 38px;
+        width: 0;
+        height: 0;
+        border: 0 solid transparent;
+        border-left-width: 10px;
+        border-right-width: 10px;
+        border-top: 15px solid #fff;
+      }
+    }
+  }
+  > p {
+    font-size: 15px;
+    line-height: 24px;
+    color: #c1b083;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+  &_list {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    figure {
+      width: percentage(280 / 610);
+      img {
+        border-radius: 50%;
+      }
+    }
+    ul {
+      li {
+        font-size: 16px;
+        line-height: 24px;
+        color: #c1b083;
+        margin-bottom: 17px;
+        position: relative;
+        padding-left: 20px;
+        font-weight: bold;
+        &:after {
+          content: "✓";
+          position: absolute;
+          font-family: "小塚ゴシック Pr6N";
+          top: 50%;
+          left: 0;
+          font-size: 18px;
+          transform: translate(0, -50%);
+          color: #c1b083;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  article {
+    margin-bottom: 40px;
+    position: relative;
+    figure {
+      width: 100%;
+    }
+    .inner_txt {
+      position: relative;
+      background: #c1b083;
+      padding: 23px 15px 30px;
+      margin-top: -6px;
+      h3 {
+        font-size: 18px;
+        line-height: 24px;
+        color: #0c3864;
+        margin-bottom: 20px;
+        counter-increment: h3;
+        position: relative;
+        padding-left: 30px;
+        &:before {
+          position: absolute;
+          content: "";
+          border: 2px solid #0c3864;
+          border-radius: 100%;
+          width: 20px;
+          height: 20px;
+          left: 0px;
+          bottom: 0;
+        }
+        &:after {
+          content: counter(h3);
+          font-size: 18px;
+          font-weight: normal;
+          line-height: 1;
+          font-family: "Varela Round";
+          color: #0c3864;
+          left: 7px;
+          bottom: 2px;
+          position: absolute;
+
+        }
+      }
+      p {
+        font-size: 12px;
+        line-height: 20px;
+        color: #0c3864;
+      }
+    }
+    .scoreup {
+      margin-top: 9px;
+      span {
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+    .line_up {
+      margin: 20px 0 17px;
+      display: block;
+    }
+    &:nth-of-type(2) {
+      .whitebg {
+        background: #fff;
+        width: 100%;
+        top: 0;
+        padding: 30px 0;
+        > p {
+          span {
+            font-size: 18px;
+            width: 158px;
+            line-height: 23px;
+            color: #0c3864;
+            border-bottom : 1px solid #0c3864;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+        .point_muilti {
+          ul {
+            padding: 37px 0 15px;
+            li {
+              width: 250px;
+              height: 61px;
+              line-height: 61px;
+              font-size: 16px;
+              line-height: 20px;
+              text-align: center;
+              background: #0c3864;
+              margin: 0 auto 25px;
+              color: #c1b083;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3){
+                &:before {
+                  content: "\00D7";
+                  color: #0c3864;
+                  font-size: 14px;
+                  position: absolute;
+                  bottom: -22px;
+                  transform: translate(-50%, 0);
+                  right: 50%;
+                  font-family: "Hiragino Kaku Gothic Pro";
+                }
+              }
+              &:nth-of-type(3) {
+                &:before {
+                  content: "\003D";
+                }
+              }
+              &:last-child {
+                background: #c1b083;
+                color: #0c3864;
+              }
+            }
+          }
+          p {
+            text-align: center;
+            font-size: 13px;
+            line-height: 20px;
+            padding: 0 20px;
+          }
+        }
+      }
+      .point_inner {
+        padding: 37px 0 26px;
+      }
+      dl {
+        margin-bottom: 30px;
+        dt {
+          font-size: 15px;
+          line-height: 22px;
+          color: #0c3864;
+          padding-left: 18px;
+          position: relative;
+          font-weight: bold;
+          margin-bottom: 12px;
+          &:after {
+            content: "";
+            background: #0c3864;
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+          }
+        }
+        dd {
+          font-size: 12px;
+          line-height: 20px;
+          color: #0c3864;
+        }
+      }
+    }
+  }
+}
+.access {
+  padding: 41px 0 40px;
+  h2 {
+    span {
+      color: #0c3864;
+      border-bottom: 1px solid #0c3864;
+    }
+  }
+  article {
+    h3 {
+      text-align: center;
+      font-size: 18px;
+      color: #0c3864;
+      margin: 27px 0 34px;
+    }
+    ul {
+      li {
+        width: 290px;
+        margin: 0 auto 39px;
+        h4 {
+          font-size: 14px;
+          line-height: 24px;
+          text-align: center;
+          color: #0c3864;
+          margin: 7px 0 8px;
+        }
+        a {
+          color: #c1b083;
+          text-decoration: none;
+          display: block;
+          text-align: center;
+          background: #0c3864;
+          width: 70%;
+          height: 38px;
+          line-height: 38px;
+          font-size: 12px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+.footer {
+  background: #c1b083;
+  padding: 40px 20px 20px;
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &_logo {
+    width: 149px;
+    font-size: 0;
+  }
+  a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #0c3864;
+  }
+  small{
+    font-size: 11px;
+    color: #0c3864;
+    margin-top: 35px;
+    display: block;
+    text-align: center;
+    font-family: "Varela Round";
+  }
+}
