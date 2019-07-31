@@ -1,141 +1,42 @@
-//
-// mixin
-//------------------------------------------------------------------------
+// CSS Document
+$config_sp_scale_img : 2.4;
+$design_width: 768;
+$config_base_fontsize : 10;
+$config_sp_scale_font : 2;
 
-//------------------------------------| Media Query mixin |------------------------------------
-// See https://github.com/sass-mq/sass-mq/ for original full version.
-// @example scss
-// .element {
-//   @include mq($from: phone) {
-//     color: $c-black;
-//   }
-//   @include mq($to: phablet) {
-//     color: $c-black;
-//   }
-//   @include mq(phone, phablet) {
-//     color: $c-black;
-//   }
-//   @include mq($from: phone, $and: '(orientation: landscape)') {
-//     color: $c-black;
-//   }
-//   @include mq(phone) {
-//     color: $c-black;
-//   }
-//   @include mq(desktop, $media-feature: height) {
-//     color: $c-black;
-//   }
-//   @include mq(tablet, $media-type: screen) {
-//     color: $c-black;
-//   }
-//   // Advanced use:
-//   $custom-breakpoints: (L: 900px, XL: 1200px);
-//   @include mq(L, $bp: $custom-breakpoints) {
-//     color: $c-black;
-//   }
-// }
-// build scss
-// @media (min-width: 375px) {
-//   .element {
-//     color: #000;
-//   }
-// }
+// SP width _____________________________
+@function px2($px_psd) {
+  $result: $px_psd / $config_sp_scale_img;
+  @return #{$result}px;
+}
 
-// @media (max-width: 640px) {
-//   .element {
-//     color: #000;
-//   }
-// }
+// vw( designSIZE ) vw指定
+@function vw($design_width_psd) {
+  $vw: $design_width_psd / $design_width * 100;
+  @return #{$vw}vw;
+}
 
-// @media (min-width: 375px) and (max-width: ) {
-//   .element {
-//     color: #000;
-//   }
-// }
+@function vw2($design_width_psd) {
+  $vw: $design_width_psd / 1417 * 100;
+  @return #{$vw}vw;
+}
 
-// @media (min-width: 375px) and (orientation: landscape) {
-//   .element {
-//     color: #000;
-//   }
-// }
+// pw( designSIZE ) %指定
+@function pw($base_design_width, $design_width_psd) {
+  $pw: $design_width_psd / $base_design_width * 100 + '%';
+  @return #{$pw};
+}
 
-// @media (min-width: 375px) {
-//   .element {
-//     color: #000;
-//   }
-// }
+// font _____________________________
+@function rem($font_size_psd) {
+  $rem: $font_size_psd / $config_base_fontsize;
+  @return #{$rem}rem;
+}
 
-// @media (min-height: 1280px) {
-//   .element {
-//     color: #000;
-//   }
-// }
-
-// @media screen and (min-width: 768px) {
-//   .element {
-//     color: #000;
-//   }
-// }
-
-// @media (min-width: 900px) {
-//   .element {
-//     color: #000;
-//   }
-// }
-
-@mixin mq(
-  $from: false,
-  $to: false,
-  $and: false,
-  $media-feature: width,
-  $media-type: all,
-  $bp: $breakpoints
-) {
-  $min-width: 0;
-  $max-width: 0;
-  $media-query: '';
-
-  // From: this breakpoint (inclusive)
-  @if $from {
-    @if type-of($from) == number {
-      $min-width: $from;
-    }
-
-    @else {
-      $min-width: map_get($bp, $from);
-    }
-  }
-
-  // Until: that breakpoint (exclusive)
-  @if $to {
-    @if type-of($to) == number {
-      $max-width: $to;
-    }
-
-    @else {
-      // $negative: if($em-media-queries, 0.01em, 1px);
-      $max-width: map_get($bp, $to);
-    }
-  }
-
-  @if $media-feature {
-    @if $min-width != 0 { $media-query: '#{$media-query} and (min-#{$media-feature}: #{$min-width})'; }
-
-    @if $max-width != 0 { $media-query: '#{$media-query} and (max-#{$media-feature}: #{$max-width})'; }
-  }
-
-  @if $and {
-    $media-query: '#{$media-query} and #{$and}';
-  }
-
-  // Remove unnecessary media query prefix 'all and '
-  @if ($media-type == 'all' and $media-query != '') {
-    $media-type: '';
-    $media-query: str-slice(unquote($media-query), 6);
-  }
-
-  @media #{$media-type + $media-query} {
-    @content;
-  }
+// rem2( designSIZE)
+@function rem2($font_size_psd) {
+  $rem: $font_size_psd / $design_width * 100;
+  @return #{$rem}vw;
 }
 
 //------------------------------------| CSS raw |------------------------------------
@@ -158,7 +59,20 @@
   cursor: pointer;
   transform: rotate($rotate) translate(-50%, -50%);
 }
-
+@mixin btn_pc($w, $h) {
+  width: $w;
+  height: $h;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 1px solid #000;
+  position: relative;
+  font-size: rem(16.02);
+  color: #000;
+  transform: perspective(1px) translateZ(0);
+  transition: color .3s;
+}
 //------------------------------------| CSS Triangle |------------------------------------
 // used for creating CSS only triangles
 // example:
@@ -206,38 +120,6 @@
   }
 }
 
-//------------------------------------| Margin / Padding Quick Resets |------------------------------------
-// example: top & bottom margin set to $spacing-unit
-// .element {
-//   @include push-ends(10px);
-// }
-// example: left & right padding set to $spacing-unit-small
-// .element {
-//   @include soft-sides($spacing-unit-small);
-// }
-
-// add/remove margins
-@mixin push-ends($spacing: $spacing-unit) { margin: { top: $spacing; bottom: $spacing; } }
-
-@mixin push-sides($spacing: $spacing-unit) { margin: { left: $spacing; right: $spacing; } }
-
-@mixin push-auto { margin: { left: auto; right: auto; } }
-
-@mixin offset-sides($spacing: $spacing-unit) { margin: { left: -$spacing; right: -$spacing; } }
-
-@mixin flush-ends { margin: { top: 0; bottom: 0; } }
-
-@mixin flush-sides { margin: { left: 0; right: 0; } }
-
-// add/remove paddings
-@mixin soft-ends($spacing: $spacing-unit) { padding: { top: $spacing; bottom: $spacing; } }
-
-@mixin soft-sides($spacing: $spacing-unit) { padding: { left: $spacing; right: $spacing; } }
-
-@mixin hard-ends { padding: { top: 0; bottom: 0; } }
-
-@mixin hard-sides { padding: { left: 0; right: 0; } }
-
 //------------------------------------| Form input placeholder text |------------------------------------
 // example:
 // input,
@@ -253,60 +135,6 @@
   &:-webkit-input-placeholder { @content; }
 }
 
-//------------------------------------| Retina images |------------------------------------
-// example:
-// .element {
-//   @include retina {
-//     background-image: url(../img/background@2x.png);
-//   }
-// }
-// @mixin retina {
-//   @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-//     only screen and (-moz-min-device-pixel-ratio: 1.5),
-//     only screen and (-o-min-device-pixel-ratio: 3 / 2),
-//     only screen and (min-device-pixel-ratio: 1.5),
-//     only screen and (min-resolution: 1.5dppx) {
-//     @content;
-//   }
-// }
-
-//------------------------------------| Content margins |------------------------------------
-// fore removing first/last child margins
-// example: default
-// .element {
-//   @include content-margins;
-// }
-// output:
-// .element > *:first-child {
-//   margin-top: 0;
-// }
-// .element > *:last-child {
-//   margin-bottom: 0;
-// }
-// example: empty selector
-// .element {
-//   @include content-margins(false);
-// }
-// output:
-// .element:first-child {
-//   margin-top: 0;
-// }
-// .element:last-child {
-//   margin-bottom: 0;
-// }
-@mixin content-margins($selector: '> *', $last-child: false) {
-  @if not $selector {
-    $selector: '&';
-  }
-
-  #{unquote($selector)} {
-    &:first-child { margin-top: 0; }
-
-    @if $last-child {
-      &:last-child { margin-bottom: 0; }
-    }
-  }
-}
 
 //------------------------------------| Hide text |------------------------------------
 // example:
@@ -333,28 +161,6 @@
   }
 }
 
-//------------------------------------| Typography |------------------------------------
-// Text image replacement, with responsive ratio
-// HTML:
-// <h1 class="element">
-// 	<span>Text to replace</span>
-// </h1>
-// example:
-// .element {
-// 	@include typography(200, 50, 'hello-world');
-// }
-@mixin typography($w, $h, $file, $type: png, $overflow: hidden) {
-  @include responsive-ratio($w, $h, true);
-
-  position: relative;
-  max-width: $w * 1px;
-  background: url('/assets/img/typography/#{$file}.#{$type}') 50% 50% no-repeat;
-  background-size: contain;
-
-  span {
-    @include hide-text(true, $overflow: $overflow);
-  }
-}
 
 //------------------------------------| Helper mixins |------------------------------------
 @mixin pseudo($display: block, $pos: absolute, $content: '') {
@@ -422,14 +228,6 @@
   }
 }
 
-@mixin vh-reset {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
-}
 
 // Allow the element to be focusable when navigated to via the keyboard
 @mixin vh-focusable {
